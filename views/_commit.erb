@@ -1,0 +1,14 @@
+<li class="commit">
+  <div class="clearfix">
+    <div class="icons">
+      <%= "<a class=\"git\" href=\"https://github.com/#{Branch.config['git']['repo']}/commit/#{commit.sha}\">#{commit.sha.slice(0, 10)}</a>" %>
+      <% fogbugz(commit) do |fogbugz| %>
+        <%= "<a class=\"fogbugz\" href=\"https://#{Branch.config['fogbugz']['domain']}.fogbugz.com/default.asp?#{fogbugz}\">Case #{fogbugz}</a>" %>
+      <% end %>
+    </div>
+    <div class="details">
+      <h3><%= commit.author %>, <%= commit.date.strftime "%b %d %Y, %k:%M" %></h3>
+      <div><%= commit.message %></div>
+    </div>
+  </div>
+</li>
