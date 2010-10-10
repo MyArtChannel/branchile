@@ -1,5 +1,3 @@
-BRANCHES = ['3.2.1-dev', 'artist_orders', 'investor_forum']
-
 helpers do
 
   def partial(template, locals)
