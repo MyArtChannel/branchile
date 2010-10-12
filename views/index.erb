@@ -9,7 +9,7 @@
       </ul>
       <div class="collapsed" style="display: none;">
         <ul class="log">
-          <% branch.commits.slice(1, 5).each do |commit| %>
+          <% branch.commits.slice(1, 10).each do |commit| %>
             <%= partial 'commit', :commit => commit %>
           <% end %>
         </ul>
