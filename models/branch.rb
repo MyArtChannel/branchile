@@ -1,16 +1,14 @@
 require 'yaml'
 require 'grit'
 
-class Branch < Struct.new(:repo, :name)
+class Branch < Struct.new(:repo, :name, :url)
   include Grit
   
   def self.fetch
     @@config = YAML.load_file('config.yml')
-    path = @@config['local']['path']
-    path = @@config['local']['path']
-    Dir.glob(File.join(path, "*")).map {|name|
-      Branch.new(Repo.new(name), name.sub("#{path}/", ''))
-      }
+    @@config['branches'].map do |key, value|
+      Branch.new(Repo.new(value['path']), key, value['url'])
+    end
   end
 
   def initialize(*args)
@@ -19,7 +17,7 @@ class Branch < Struct.new(:repo, :name)
   end
   
   def href
-    "http://#{name.sub('_', '-').gsub('.', '-')}.#{@@config['local']['domain']}"
+    url
   end
   
   def commits
