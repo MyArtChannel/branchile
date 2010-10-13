@@ -1,0 +1,3 @@
+= Branchile
+
+Branchile is a Sinatra app that shows you the latest state of a git repository.
