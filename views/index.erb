@@ -5,15 +5,19 @@
         <a href="<%= branch.href %>" class="app"><%= branch.name.sub('_', ' ') %></a>
       </h2>
       <ul class="log">
-        <%= partial 'commit', :commit => branch.commits.first %>
+        <% branch.commits.first.tap do |first_commit| %>
+          <%= partial 'commit', :commit => first_commit if first_commit %>
+        <% end %>
       </ul>
-      <div class="collapsed" style="display: none;">
-        <ul class="log">
-          <% branch.commits.slice(1, 10).each do |commit| %>
-            <%= partial 'commit', :commit => commit %>
-          <% end %>
-        </ul>
-      </div>
+      <% if !branch.commits.slice(1, 10).nil? %>
+        <div class="collapsed" style="display: none;">
+          <ul class="log">
+            <% branch.commits.slice(1, 10).each do |commit| %>
+              <%= partial 'commit', :commit => commit %>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <a href="#" onclick="BRANCHILE.showMore('<%= branch.name %>'); return false;" class="more">more...</a>
       <a href="#" onclick="BRANCHILE.showLess('<%= branch.name %>'); return false;" class="less" style="display: none;">less...</a>
     </li>
