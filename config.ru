@@ -4,7 +4,7 @@ require 'rubygems'
 require 'sinatra'
 require 'grit'
 
-require 'branchile.rb'
-require 'models/branch.rb'
+require './branchile.rb'
+require './models/branch.rb'
 
 run Sinatra::Application
