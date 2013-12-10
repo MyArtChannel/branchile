@@ -15,7 +15,6 @@ app = Rack::Auth::Digest::MD5.new(Sinatra::Application) do |username|
   credentials["users"][username]
 end
 
-app.realm = "Macagile"
 app.opaque = SecureRandom.hex
 
 run app
